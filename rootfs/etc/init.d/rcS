@@ -1,0 +1,39 @@
+#!/bin/sh
+
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+runlevel=S
+prevlevel=N
+umask 022
+export PATH runlevel prevlevel
+
+#
+#	Trap CTRL-C &c only in this shell so we can interrupt subprocesses.
+#
+echo Done > /dev/s3c2410_serial0
+
+mount -a
+mkdir /dev/pts
+mount -t devpts devpts /dev/pts
+echo /sbin/mdev > /proc/sys/kernel/hotplug
+mdev -s
+mkdir -p /var/lock
+
+mkdir /dev/fb /dev/v4l
+ln -s /dev/fb0 /dev/fb/0
+ln -s /dev/video0 /dev/v4l/video0
+
+ln -s /dev/ts0 /dev/h3600_tsraw
+
+hwclock -s
+
+ifconfig lo 127.0.0.1
+
+/etc/rc.d/init.d/leds start
+/etc/rc.d/init.d/set_ip_static.sh
+/etc/rc.d/init.d/sshd_start
+
+/bin/hostname -F /etc/sysconfig/HOSTNAME
+
+sleep 1
+mount -t vfat /dev/sda1 /mnt/udisk

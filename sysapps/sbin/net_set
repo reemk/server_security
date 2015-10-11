@@ -1,0 +1,25 @@
+#!/bin/sh
+
+echo Try to bring eth0 interface up ...>/dev/tq2440_serial0
+
+if [ -f /etc/net.conf ] ; then
+	source /etc/net.conf
+
+	ifconfig eth0 down
+	ifconfig eth0 hw ether $MAC
+	echo ifconfig eth0 hw ether $MAC >/dev/tq2440_serial0
+	ifconfig eth0 $IPADDR netmask $NETMASK up
+	echo ifconfig eth0 $IPADDR netmask $NETMASK up >/dev/tq2440_serial0
+	route add default gw $GATEWAY
+	echo add default gw $GATEWAY >/dev/tq2440_serial0
+else
+
+	ifconfig eth0 hw ether 10:23:45:67:89:ab
+	ifconfig eth0 192.168.1.6 netmask 255.255.255.0 up
+	route add default gw 192.168.1.2
+	echo ifconfig eth0 hw ether 10:23:45:67:89:ab >/dev/tq2440_serial0
+	echo ifconfig eth0 192.168.1.6 netmask 255.255.255.0 up >/dev/tq2440_serial0
+	echo route add default gw 192.168.1.2 >/dev/tq2440_serial0
+fi
+
+echo Done > /dev/tq2440_serial0

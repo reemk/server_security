@@ -1,0 +1,177 @@
+*** Warning - bad CRC or NAND, using default environment
+
+
+
+##### ## BIOS for ## #####
+Press Space key to Download Mode !
+Booting Linux ...
+Copy linux kernel from 0x00200000 to 0x30008000, size = 0x00200000 ... Copy Kernel to SDRAM done,NOW, Booting Linux......
+Uncompressing Linux........................................................................................................................ done, booting the kernel.
+Linux version 2.6.30.4-Boardcon (feng@feng-desktop) (gcc version 4.3.3 (Sourcery G++ Lite 2009q1-203) ) #13 Sat Jan 30 17:29:07 CST 2010
+CPU: ARM920T [41129200] revision 0 (ARMv4T), cr=c0007177
+CPU: VIVT data cache, VIVT instruction cache
+Machine: TQ2440
+ATAG_INITRD is deprecated; please update your bootloader.
+Memory policy: ECC disabled, Data cache writeback
+CPU S3C2440A (id 0x32440001)
+S3C24XX Clocks, (c) 2004 Simtec Electronics
+S3C244X: core 400.000 MHz, memory 100.000 MHz, peripheral 50.000 MHz
+CLOCK: Slow mode (1.500 MHz), fast, MPLL on, UPLL on
+Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 16256
+Kernel command line: noinitrd root=/dev/mtdblock2 init=/linuxrc console=ttySAC0
+NR_IRQS:85
+irq: clearing pending ext status 00080000
+irq: clearing subpending status 00000002
+PID hash table entries: 256 (order: 8, 1024 bytes)
+Console: colour dummy device 80x30
+console [ttySAC0] enabled
+Dentry cache hash table entries: 8192 (order: 3, 32768 bytes)
+Inode-cache hash table entries: 4096 (order: 2, 16384 bytes)
+Memory: 64MB = 64MB total
+Memory: 60956KB available (3428K code, 373K data, 112K init, 0K highmem)
+SLUB: Genslabs=11, HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+Calibrating delay loop... 199.47 BogoMIPS (lpj=498688)
+Mount-cache hash table entries: 512
+CPU: Testing write buffer coherency: ok
+net_namespace: 296 bytes
+NET: Registered protocol family 16
+S3C2440: Initialising architecture
+S3C2440: IRQ Support
+S3C24XX DMA Driver, (c) 2003-2004,2006 Simtec Electronics
+DMA channel 0 at c4808000, irq 33
+DMA channel 1 at c4808040, irq 34
+DMA channel 2 at c4808080, irq 35
+DMA channel 3 at c48080c0, irq 36
+S3C244X: Clock Support, DVS off
+bio: create slab <bio-0> at 0
+SCSI subsystem initialized
+usbcore: registered new interface driver usbfs
+usbcore: registered new interface driver hub
+usbcore: registered new device driver usb
+s3c2440-i2c s3c2440-i2c: slave address 0x10
+s3c2440-i2c s3c2440-i2c: bus frequency set to 97 KHz
+s3c2440-i2c s3c2440-i2c: i2c-0: S3C I2C adapter
+cfg80211: Calling CRDA to update world regulatory domain
+NET: Registered protocol family 2
+IP route cache hash table entries: 1024 (order: 0, 4096 bytes)
+TCP established hash table entries: 2048 (order: 2, 16384 bytes)
+TCP bind hash table entries: 2048 (order: 1, 8192 bytes)
+TCP: Hash tables configured (established 2048 bind 2048)
+TCP reno registered
+NET: Registered protocol family 1
+yaffs Jan 30 2010 16:51:06 Installing. 
+msgmni has been set to 119
+alg: No test for stdrng (krng)
+io scheduler noop registered (default)
+Console: switching to colour frame buffer device 40x15
+fb0: s3c2410fb frame buffer device
+backlight initialized
+GPIO-Control initialized
+PWM-Test initialized
+adc initialized
+s3c2440-uart.0: tq2440_serial0 at MMIO 0x50000000 (irq = 70) is a S3C2440
+s3c2440-uart.1: tq2440_serial1 at MMIO 0x50004000 (irq = 73) is a S3C2440
+s3c2440-uart.2: tq2440_serial2 at MMIO 0x50008000 (irq = 76) is a S3C2440
+loop: module loaded
+Driver 'sd' needs updating - please use bus_type methods
+dm9000 Ethernet Driver, V1.31
+Now use the default MAC address: 10:23:45:67:89:ab
+eth0 (dm9000): not using net_device_ops yet
+eth0: dm9000e at c4814000,c4818004 IRQ 51 MAC: 10:23:45:67:89:ab (EmbedSky)
+S3C24XX NAND Driver, (c) 2004 Simtec Electronics
+s3c2440-nand s3c2440-nand: Tacls=3, 30ns Twrph0=7 70ns, Twrph1=3 30ns
+NAND device: Manufacturer ID: 0xec, Chip ID: 0x76 (Samsung NAND 64MiB 3,3V 8-bit)
+Scanning device for bad blocks
+Creating 3 MTD partitions on "NAND 64MiB 3,3V 8-bit":
+0x000000000000-0x000000040000 : "EmbedSky_Board_uboot"
+0x000000200000-0x000000400000 : "EmbedSky_Board_kernel"
+0x000000200000-0x000003df8000 : "EmbedSky_Board_yaffs2"
+ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+Initial EmbedSky TWO USB HOST Driver!
+s3c2410-ohci s3c2410-ohci: S3C24XX OHCI
+s3c2410-ohci s3c2410-ohci: new USB bus registered, assigned bus number 1
+s3c2410-ohci s3c2410-ohci: irq 42, io mem 0x49000000
+usb usb1: New USB device found, idVendor=1d6b, idProduct=0001
+usb usb1: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+usb usb1: Product: S3C24XX OHCI
+usb usb1: Manufacturer: Linux 2.6.30.4-Boardcon ohci_hcd
+usb usb1: SerialNumber: s3c24xx
+usb usb1: configuration #1 chosen from 1 choice
+hub 1-0:1.0: USB hub found
+hub 1-0:1.0: 2 ports detected
+Initializing USB Mass Storage driver...
+usbcore: registered new interface driver usb-storage
+USB Mass Storage support registered.
+usbcore: registered new interface driver usbserial
+usbserial: USB Serial Driver core
+USB Serial support registered for pl2303
+usbcore: registered new interface driver pl2303
+pl2303: Prolific PL2303 USB to serial adaptor driver
+mice: PS/2 mouse device common for all mice
+TQ2440 TouchScreen successfully loaded
+input: TQ2440 TouchScreen as /devices/virtual/input/input0
+S3C24XX RTC, (c) 2004,2006 Simtec Electronics
+s3c2410-rtc s3c2410-rtc: rtc disabled, re-enabling
+s3c2410-rtc s3c2410-rtc: rtc core: registered s3c as rtc0
+i2c /dev entries driver
+Linux video capture interface: v2.00
+zc0301: V4L2 driver for ZC0301[P] Image Processor and Control Chip v1:1.10
+usbcore: registered new interface driver zc0301
+gspca: main v2.5.0 registered
+usbcore: registered new interface driver zc3xx
+zc3xx: registered
+usbcore: registered new interface driver uvcvideo
+USB Video Class driver (v0.1.0)
+S3C2410 Watchdog Timer, (c) 2004 Simtec Electronics
+s3c2410-wdt s3c2410-wdt: watchdog inactive, reset disabled, irq enabled
+mapped channel 0 to 0
+s3c2440-sdi s3c2440-sdi: powered down.
+s3c2440-sdi s3c2440-sdi: initialisation done.
+s3c2440-sdi s3c2440-sdi: powered down.
+usbcore: registered new interface driver usbhid
+usbhid: v2.6:USB HID core driver
+Advanced Linux Sound Architecture Driver Version 1.0.18a.
+No device for DAI UDA134X
+No device for DAI s3c24xx-i2s
+S3C24XX_UDA134X SoC Audio driver
+UDA134X SoC Audio Codec
+asoc: UDA134X <-> s3c24xx-i2s mapping ok
+ALSA device list:
+  #0: S3C24XX_UDA134X (UDA134X)
+TCP cubic registered
+RPC: Registered udp transport module.
+RPC: Registered tcp transport module.
+lib80211: common routines for IEEE802.11 drivers
+s3c2410-rtc s3c2410-rtc: hctosys: invalid date/time
+yaffs: dev is 32505858 name is "mtdblock2"
+yaffs: passed flags ""
+yaffs: Attempting MTD mount on 31.2, "mtdblock2"
+yaffs_read_super: isCheckpointed 0
+VFS: Mounted root (yaffs filesystem) on device 31:2.
+Freeing init memory: 112K
+hwclock: settimeofday() failed: Invalid argument
+input_polldev: version magic '2.6.30.4-EmbedSky mod_unload ARMv4 ' should be '2.6.30.4-Boardcon mod_unload ARMv4 '
+insmod: cannot insert '/lib/input-polldev.ko': invalid module format
+mac80211: version magic '2.6.30.4-EmbedSky mod_unload ARMv4 ' should be '2.6.30.4-Boardcon mod_unload ARMv4 '
+insmod: cannot insert '/lib/mac80211.ko': invalid module format
+rt2x00lib: version magic '2.6.30.4-EmbedSky mod_unload ARMv4 ' should be '2.6.30.4-Boardcon mod_unload ARMv4 '
+insmod: cannot insert '/lib/rt2x00lib.ko': invalid module format
+rt2x00usb: version magic '2.6.30.4-EmbedSky mod_unload ARMv4 ' should be '2.6.30.4-Boardcon mod_unload ARMv4 '
+insmod: cannot insert '/lib/rt2x00usb.ko': invalid module format
+rt73usb: version magic '2.6.30.4-EmbedSky mod_unload ARMv4 ' should be '2.6.30.4-Boardcon mod_unload ARMv4 '
+insmod: cannot insert '/lib/rt73usb.ko': invalid module format
+ov9650: version magic '2.6.30.4-EmbedSky mod_unload ARMv4 ' should be '2.6.30.4-Boardcon mod_unload ARMv4 '
+insmod: cannot insert '/lib/ov9650.ko': invalid module format
+Try to bring eth0 interface up ...
+ifconfig eth0 hw ether 10:23:45:67:89:ab
+eth0: link down
+ifconfig eth0 192.168.1.6 netmask 255.255.255.0 up
+add default gw 192.168.1.2
+Done
+[01/Jan/1970:00:00:08 +0000] Start Qtopia-2.2.0
+boa: server version Boa/0.94.13
+[01/Jan/1970:00:00:08 +0000] boa: server built Jul 29 2009 at 14:27:34.
+[01/Jan/1970:00:00:08 +0000] boa: starting server pid=463, port 80
+
+Please press Enter to activate this console. 
+[root@Boardcon /]# [9;0][?33l[?25l 

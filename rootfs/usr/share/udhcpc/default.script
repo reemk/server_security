@@ -1,0 +1,50 @@
+#!/bin/sh
+
+# udhcpc script edited by Tim Riker <Tim@Rikers.org>
+
+[ -z "$1" ] && echo "Error: should be called from udhcpc" && exit 1
+
+echo Config $interface with DHCP ...>/dev/s3c2410_serial0
+macval="10:23:45:67:89:ab"
+ifconfig eth0 hw ether $macval
+
+DHCP_GET=/var/udhcpc_get_ip
+RESOLV_CONF="/etc/resolv.conf"
+[ -n "$broadcast" ] && BROADCAST="broadcast $broadcast"
+[ -n "$subnet" ]    && NETMASK="netmask $subnet"
+
+case "$1" in
+	deconfig)
+		/sbin/ifconfig $interface 0.0.0.0
+		;;
+
+	renew|bound)
+		echo ifconfig $interface $ip $NETMASK up >/dev/s3c2410_serial0
+		/sbin/ifconfig $interface $ip $BROADCAST $NETMASK
+
+		if [ -n "$router" ] ; then
+			echo "deleting routers"
+			while route del default gw 0.0.0.0 dev $interface ; do
+				:
+			done
+
+			metric=0
+			for i in $router ; do
+				route add default gw $i dev $interface metric $((metric++))
+				echo route add default gw $i >/dev/s3c2410_serial0
+			done
+		fi
+
+		echo -n > $RESOLV_CONF
+		[ -n "$domain" ] && echo search $domain >> $RESOLV_CONF
+		for i in $dns ; do
+			echo adding dns $i
+			echo nameserver $i >> $RESOLV_CONF
+		done
+		
+		# Notify that we set an @ ip
+		#touch $DHCP_GET
+		;;
+esac
+echo Done >/dev/s3c2410_serial0
+exit 0

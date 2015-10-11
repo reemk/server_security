@@ -1,0 +1,36 @@
+#!/bin/sh
+# Script for launching sshd Daemon
+
+ SSHD_FOLDER=/etc/openssh 
+ SSHD_CONFIG=sshd_config
+ SSHD_KEY_FILE=ssh_host_key
+ SSHD_AUTH_KEYFILE=authorized_keys
+
+ SSHD_DAEMON=/sbin/sshd
+ SSHD_DAEMON_OPTS="-q -f $SSHD_FOLDER/$SSHD_CONFIG -h $SSHD_FOLDER/$SSHD_KEY_FILE" 
+
+ SSHD_KEYGEN=/bin/ssh-keygen
+ SSHD_KEY_OPTS="-q -t rsa -f $SSHD_FOLDER/$SSHD_KEY_FILE"
+
+ [ -x $SSHD_DAEMON ] && [ -x $SSHD_KEYGEN ] || exit 1
+
+ PID_SSH=`pidof sshd`
+ if [ -n "$PID_SSH" ]; then
+     killall $SSHD_DAEMON
+ fi
+
+ if [ ! -d $SSHD_FOLDER ]; then
+     mkdir -p $SSHD_FOLDER
+ fi
+
+ [ -f $SSHD_FOLDER/$SSHD_KEY_FILE ] || $SSHD_KEYGEN $SSHD_KEY_OPTS -N "" 
+
+ if [ -f /etc/$SSHD_CONFIG ]; then
+     mv /etc/$SSHD_CONFIG $SSHD_FOLDER
+ fi
+ 
+ if [ -f /etc/$SSHD_AUTH_KEYFILE ]; then
+     mv /etc/$SSHD_AUTH_KEYFILE $SSHD_FOLDER
+ fi
+
+ $SSHD_DAEMON $SSHD_DAEMON_OPTS

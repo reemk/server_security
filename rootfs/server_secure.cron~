@@ -1,0 +1,24 @@
+#!/bin/sh
+
+ DATE_TODAY=`date +%Y-%m-%d`
+ FOLDER=/dev/shm
+ START_FILE=$FOLDER/server_sec_start
+ SCRIPT_NAME=/home/reeeemk/server_security/rootfs/server_secure.sh
+ rv=0
+
+ [ -f $START_FILE ] || touch $START_FILE
+
+ DATE_START_FILE=$(cat $START_FILE)
+ 
+ if [ "$DATE_TODAY" != "$DATE_START_FILE" ]; then
+     echo "$DATE_TODAY" > $START_FILE
+     $SCRIPT_NAME
+     if [ $? -eq 0 ]; then
+	 logger "$0 success"
+     else
+	 logger "$0 failed"
+	 rv=1
+     fi
+ fi
+
+ exit $rv

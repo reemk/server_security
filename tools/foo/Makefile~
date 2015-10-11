@@ -1,0 +1,12 @@
+include ../Makefile.config
+EXEC=foo
+SRCS=$(wildcard *.c)
+OBJS=$(.)
+
+all : $(EXEC)
+
+$(EXEC):$(OBJS)
+	$(CC) -o $@ $^ LDFLAGS=-L$(LIB_DIR_HOST)
+
+$(OBJS):$(SRCS)
+	$(CC) -c $<
