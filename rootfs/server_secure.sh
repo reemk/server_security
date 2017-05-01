@@ -12,7 +12,7 @@
  SMB_PASSWD=/home/reeeemk/server_security/rootfs/smb_passwd
 
  SERVER_FOLDER=/mnt/udisk
- SERVER_USER=root
+ SERVER_USER=souleymane_imrane
  SERVER_HOST=serversec
  
  SMB_CMD=/usr/bin/smbmount
