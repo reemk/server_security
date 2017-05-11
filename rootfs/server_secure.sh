@@ -1,6 +1,6 @@
 #!/bin/bash
 
- WLAN0_IP="192.168.0.11"
+ WLAN0_IP="192.168.0.12"
  ETH0_IP="192.168.0.16"
  ADDR_IP="$ETH0_IP $WLAN0_IP"
 

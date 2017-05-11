@@ -29,9 +29,9 @@ hwclock -s
 
 ifconfig lo 127.0.0.1
 
-/etc/rc.d/init.d/leds start
 /etc/rc.d/init.d/set_ip_static.sh
 /etc/rc.d/init.d/sshd_start
+/etc/rc.d/init.d/ntpd.sh start
 
 /bin/hostname -F /etc/sysconfig/HOSTNAME
 
