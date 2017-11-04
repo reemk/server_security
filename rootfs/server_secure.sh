@@ -1,6 +1,6 @@
 #!/bin/bash
 
- WLAN0_IP="192.168.0.12"
+ WLAN0_IP="192.168.0.10"
  ETH0_IP="192.168.0.16"
  ADDR_IP="$ETH0_IP $WLAN0_IP"
 
@@ -20,11 +20,11 @@
 
  RSYNC_CMD=/usr/bin/rsync
  FOLDER_HDD_EXCLUDE="--exclude homepc --exclude $RECYCLE.BIN --exclude Thumbs.db --exclude ETUDE_CONVERGENCE --exclude poky-overkiz --exclude CVS --exclude wearing_solde --exclude debian_x86.rar --exclude homepc/Mes_documents --exclude RASPI_PROJECT"
- FOLDER_PC_EXCLUDE="--exclude=debian_x86"
+ FOLDER_PC_EXCLUDE="--exclude=debian_x86 --exclude=debina_8.7"
 
  RSYNC_DEBUG_FILE="/dev/shm/rsync_debug"
  RSYNC_DEBUG="--log-file=$RSYNC_DEBUG_FILE"
- RSYNC_CMD_OPT="-vrlpt $RSYNC_DEBUG $FOLDER_PC_EXCLUDE"
+ RSYNC_CMD_OPT="-vrlt $RSYNC_DEBUG $FOLDER_PC_EXCLUDE"
 
  [ -x $SMB_CMD ] && [ -x $RSYNC_CMD ] || exit 1
 
@@ -34,7 +34,7 @@
      sudo umount -f $SMB_MNT 2> /dev/null
  }
 
- rv=0
+ rv=1
 
  for ip in $ADDR_IP 
  do
@@ -42,15 +42,14 @@
 
      if [ $? -ne 0 ]; then
 	 logger "$0 failed for $ip to mount $SMB_FOLDER"
-	 rv=1
      else
 	 rm -f $RSYNC_DEBUG_FILE
 	 $RSYNC_CMD $RSYNC_CMD_OPT $SMB_MNT/  $SERVER_USER@$SERVER_HOST:$SERVER_FOLDER
 	 if [ $? -ne 0 ]; then
 	     logger "$0 failed for $ip to rsync $SMB_MNT folder"
-	     rv=1
 	 else
 	     logger "$0 finished to rsync all folders"
+	     rv=0
 	 fi
      fi
 

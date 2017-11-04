@@ -3,23 +3,37 @@
  DATE_TODAY=`date +%Y-%m-%d`
  FOLDER=/dev/shm
  START_FILE=$FOLDER/server_sec_start
+ ERROR_FILE=$FOLDER/server_sec_error
  SCRIPT_NAME=/home/reeeemk/server_security/rootfs/server_secure.sh
+ START_SYNC=
  rv=0
 
  [ -f $START_FILE ] || touch $START_FILE
-
  DATE_START_FILE=$(cat $START_FILE)
  
  if [ "$DATE_TODAY" != "$DATE_START_FILE" ]; then
      echo "$DATE_TODAY" > $START_FILE
+     START_SYNC=1
+#Erase old error_file
+     rm -f $ERROR_FILE
+ else
+     if [ -f $ERROR_FILE ]; then
+	 START_SYNC=1
+	 rm -f $ERROR_FILE
+     fi
+ fi
+
+ if [ -n "$START_SYNC" ]; then
      export SSH_AUTH_SOCK=`find /tmp/keyring-*/ -type s -user reeeemk -group reeeemk -name ssh`
      $SCRIPT_NAME
      if [ $? -eq 0 ]; then
 	 logger "$0 success"
      else
 	 logger "$0 failed"
+	 touch $ERROR_FILE
 	 rv=1
      fi
  fi
+
 
  exit $rv
